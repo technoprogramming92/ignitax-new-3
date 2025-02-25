@@ -5,7 +5,7 @@ import path from "path";
 
 const nextConfig = {
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     optimizeImages: true,
   },
   trailingSlash: true,
