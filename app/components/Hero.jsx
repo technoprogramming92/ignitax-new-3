@@ -44,7 +44,9 @@ export default function Hero() {
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".hero-two-box",
-        start: "top 80%",
+        start: "top 90%", // **Increase the trigger start position**
+        end: "top 50%",
+        scrub: 1, // **Smooth scrolling effect**
         toggleActions: "play none none reverse",
       },
     });
