@@ -1,18 +1,34 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
 
 export default function Hero() {
+  const [isPreloaderComplete, setIsPreloaderComplete] = useState(false);
+
   useEffect(() => {
-    // Ensure animations only run after the DOM is loaded
-    setTimeout(() => {
-      // Animate text split after preloader finishes
+    // ✅ Wait until Preloader completes
+    const checkPreloader = setInterval(() => {
+      if (document.body.classList.contains("preloader-complete")) {
+        setIsPreloaderComplete(true);
+        clearInterval(checkPreloader);
+      }
+    }, 500);
+
+    return () => clearInterval(checkPreloader);
+  }, []);
+
+  useEffect(() => {
+    if (isPreloaderComplete) {
+      console.log("✅ Preloader Done - Animating Hero Section");
+
+      // ✅ Animate Split Text (Title)
       const textElements = document.querySelectorAll(
         ".reveal_anim_after_loader"
       );
       textElements.forEach((el) => {
         const splitText = new SplitType(el, { types: "words, chars" });
+
         gsap.from(splitText.chars, {
           opacity: 0,
           y: 50,
@@ -22,7 +38,7 @@ export default function Hero() {
         });
       });
 
-      // Animate the "MARKETER", "CODERS", "DESIGNERS" text with GSAP
+      // ✅ Animate Hero Boxes (MARKETER, CODERS, DESIGNERS)
       gsap.from(".h-box", {
         opacity: 0,
         y: 40,
@@ -31,8 +47,17 @@ export default function Hero() {
         ease: "power3.out",
         delay: 0.5,
       });
-    }, 2000); // Adjust timing to match preloader duration
-  }, []);
+
+      // ✅ Additional Animation (Fade-in + Scale)
+      gsap.from(".hero-two-box", {
+        opacity: 0,
+        scale: 0.9,
+        duration: 1.5,
+        ease: "power3.out",
+        delay: 0.8,
+      });
+    }
+  }, [isPreloaderComplete]);
 
   return (
     <section className="hero-two-area bg_color_gray overflow-hidden">

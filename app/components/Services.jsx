@@ -1,34 +1,6 @@
-"use client";
-import React, { useEffect } from "react";
-import SplitType from "split-type";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import React from "react";
 
 export default function Services() {
-  useEffect(() => {
-    document.querySelectorAll(".reveal_anim-2").forEach((el) => {
-      const split = new SplitType(el, {
-        types: "lines, words, chars",
-        tagName: "span",
-      });
-
-      gsap.from(split.chars, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-        },
-        duration: 2,
-        delay: 0.1,
-        ease: "circ.out",
-        y: 200,
-        stagger: 0.05,
-        opacity: 0,
-      });
-    });
-  }, []);
-
   return (
     <section className="service-area-two section-padding-top bg_color_gray">
       <div className="container container-semi-large">
@@ -64,12 +36,7 @@ export default function Services() {
                 <div className="service-two-box">
                   <div className="service-two-info-wrap d-flex flex-column flex-xl-row justify-content-xl-between">
                     <h2 className="reveal_anim-2">
-                      <a
-                        href="service.html"
-                        className="text-[#1A1A1A] hover:text-black"
-                      >
-                        Design
-                      </a>
+                      <a href="service.html">Design</a>
                     </h2>
                     <p>
                       We believe that, exceptional design is the main
@@ -97,12 +64,7 @@ export default function Services() {
                 <div className="service-two-box">
                   <div className="service-two-info-wrap d-flex flex-column flex-xl-row justify-content-xl-between">
                     <h2 className="reveal_anim-2">
-                      <a
-                        href="service.html"
-                        className="text-[#1A1A1A] hover:text-black"
-                      >
-                        Coding
-                      </a>
+                      <a href="service.html">Coding</a>
                     </h2>
                     <p>
                       We believe that, exceptional design is the main
@@ -130,12 +92,7 @@ export default function Services() {
                 <div className="service-two-box">
                   <div className="service-two-info-wrap d-flex flex-column flex-xl-row justify-content-xl-between">
                     <h2 className="reveal_anim-2">
-                      <a
-                        href="service.html"
-                        className="text-[#1A1A1A] hover:text-black"
-                      >
-                        Marketing
-                      </a>
+                      <a href="service.html">Marketing</a>
                     </h2>
                     <p>
                       We believe that, exceptional design is the main

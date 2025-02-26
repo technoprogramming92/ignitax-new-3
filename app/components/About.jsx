@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
+import Image from "next/image";
 import OdometerCounter from "./OdometerCounter";
 
 export default function About() {
@@ -39,63 +40,73 @@ export default function About() {
       <section className="about-area-two bg_color_gray border-about-two overflow-hidden">
         <div className="container container-semi-large">
           <div className="row justify-content-between section-padding-top section-padding-bottom gy-5 align-items-center">
+            {/* ✅ Left Section (Text & Odometer Counter) */}
             <div className="col-lg-8 order-1 order-lg-0">
               <div className="about-two-info-wrap">
                 <div className="section-title-two">
                   <span className="d-inline-block position-relative">
                     ABOUT US
                   </span>
+                  <h2 className="h2 char-animation">
+                    We are a full-service digital agency dedicated to helping
+                    businesses of all sizes thrive
+                  </h2>
                 </div>
                 <div className="about-two-fun-fact-wrap d-flex flex-xl-wrap flex-wrap mt-5">
+                  {/* ✅ Odometer Counter 1 */}
                   <div className="about-two-fun-fact d-flex flex-column align-items-center text-center fade_bottom">
                     <h2 className="counter-item">
                       <span
                         className="odometer d-inline-block"
                         data-odometer-final="320"
                       >
-                        .
+                        0
                       </span>
                     </h2>
                     <p className="text_black mt-0 mt-lg-3">
                       Successfully Completed Projects
                     </p>
                   </div>
+
+                  {/* ✅ Odometer Counter 2 */}
                   <div className="about-two-fun-fact d-flex flex-column align-items-center text-center fade_bottom">
                     <h2 className="counter-item">
                       <span
                         className="odometer d-inline-block"
                         data-odometer-final="15"
                       >
-                        .
+                        0
                       </span>
                     </h2>
                     <p className="text_black mt-0 mt-lg-3">
                       Years of Experience
                     </p>
                   </div>
+
+                  {/* ✅ Odometer Counter 3 */}
                   <div className="about-two-fun-fact d-flex flex-column align-items-center text-center fade_bottom">
                     <h2 className="counter-item">
                       <span
                         className="odometer d-inline-block"
-                        data-odometer-final="2"
+                        data-odometer-final="2K"
                       >
-                        .
+                        0
                       </span>
-                      <em>K</em>
                     </h2>
                     <p className="text_black mt-0 mt-lg-3">Happy Clients</p>
                   </div>
                 </div>
-                <a
-                  className="common-design-btn only-border mt-5"
-                  href="about.html"
-                >
+
+                {/* ✅ Button */}
+                <a className="common-design-btn only-border mt-5" href="/about">
                   <span className="btn-flip">
                     <span data-text="Learn More">Learn More</span>
                   </span>
                 </a>
               </div>
             </div>
+
+            {/* ✅ Right Section (Image & Icon) */}
             <div className="col-lg-3">
               <div
                 className="about-two-cta-wrap h-100 position-relative d-flex justify-content-xxl-center justify-content-lg-end justify-content-center btn-trigger"
@@ -103,8 +114,16 @@ export default function About() {
                 data-stagger="0.08"
               >
                 <div className="about-two-cta-box btn-bounce position-relative overflow-hidden">
-                  <img className="img-1" src="/images/cta-1.svg" alt="" />
-                  <a href="about.html">
+                  {/* ✅ Image (Fixed Path) */}
+                  <Image
+                    className="img-1"
+                    src="/images/cta-1.svg"
+                    alt="CTA Image"
+                    width={150} // Adjust width accordingly
+                    height={150} // Adjust height accordingly
+                    priority
+                  />
+                  <a href="/about">
                     <svg
                       className="img-2"
                       width={50}

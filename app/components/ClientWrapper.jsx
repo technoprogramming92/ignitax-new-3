@@ -9,7 +9,6 @@ export default function ClientWrapper({ children }) {
     if (scriptsLoaded) {
       console.log("✅ All External Scripts Loaded Successfully!");
 
-      // ✅ Reinitialize scripts after preloader finishes
       setTimeout(() => {
         if (typeof window.gsap !== "undefined") {
           console.log("✅ GSAP Initialized");
@@ -17,8 +16,16 @@ export default function ClientWrapper({ children }) {
         if (typeof window.jQuery !== "undefined") {
           console.log("✅ jQuery Initialized");
         }
-        if (typeof window.odometer !== "undefined") {
+        if (typeof window.Odometer !== "undefined") {
           console.log("✅ Odometer Initialized");
+
+          // ✅ Reinitialize Odometer Counters
+          document.querySelectorAll(".odometer").forEach((el) => {
+            el.innerHTML = "0"; // Start from 0
+            setTimeout(() => {
+              el.innerHTML = el.getAttribute("data-odometer-final");
+            }, 1000); // Small delay for smooth animation
+          });
         }
       }, 500);
     }
@@ -60,7 +67,11 @@ export default function ClientWrapper({ children }) {
       <Script src="/js/jquery.mixitup.min.js" strategy="lazyOnload" />
 
       {/* ✅ Load Odometer & Other Counter Dependencies */}
-      <Script src="/js/odometer.min.js" strategy="lazyOnload" />
+      <Script
+        src="/js/odometer.min.js"
+        strategy="lazyOnload"
+        onLoad={() => console.log("✅ Odometer Script Loaded")}
+      />
       <Script src="/js/viewport.jquery.js" strategy="lazyOnload" />
 
       {/* ✅ Load Chroma for Color Manipulation */}
