@@ -37,7 +37,7 @@ export default function About() {
   return (
     <>
       <OdometerCounter />
-      <section className="about-area-two bg_color_gray border-about-two overflow-hidden">
+      <section className="about-area-two bg_color_white border-about-two overflow-hidden">
         <div className="container container-semi-large">
           <div className="row justify-content-between section-padding-top section-padding-bottom gy-5 align-items-center">
             {/* ✅ Left Section (Text & Odometer Counter) */}

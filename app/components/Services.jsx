@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Services() {
   return (
-    <section className="service-area-two section-padding-top bg_color_gray">
+    <section className="service-area-two section-padding-top bg_color_white">
       <div className="container container-semi-large">
         <div className="row align-items-end gy-4">
           <div className="col-lg-8">

@@ -15,8 +15,8 @@ export default function Footer() {
 
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.1727410582016!2d72.5403329!3d22.997035399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e85480247891b%3A0x7b58ed03d93c3e66!2sIgnitax!5e1!3m2!1sen!2sin!4v1740475657581!5m2!1sen!2sin"
-                  width="450"
-                  height="220"
+                  width="350"
+                  height="350"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"

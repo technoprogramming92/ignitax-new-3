@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Testimonial() {
   return (
-    <section className="testimonial-area bg_light_blue section-padding-top section-padding-bottom">
+    <section className="testimonial-area bg_color_white section-padding-top section-padding-bottom">
       <div className="container">
         <div className="row align-items-lg-end gy-4">
           <div className="col-lg-9">

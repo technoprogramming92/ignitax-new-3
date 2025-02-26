@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Marquee() {
   return (
-    <section className="marquee-area-wrap marquee-bg position-relative z-index-one mt-6">
+    <section className="marquee-area-wrap marquee-bg position-relative z-index-one mt-14">
       <div className="marquee-area-section overflow-hidden position-absolute w-100 top-50 start-0 bg_dp_black">
         <div className="container">
           <div className="row">

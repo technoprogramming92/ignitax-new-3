@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Portfolio() {
   return (
-    <section className="portfolio-area bg_color_gray section-padding-top section-padding-bottom">
+    <section className="portfolio-area bg_color_white section-padding-top section-padding-bottom">
       <div className="container container-semi-large">
         <div className="row align-items-end  section-border-black pb-4 pb-lg-5 gy-4">
           <div className="col-lg-8">
