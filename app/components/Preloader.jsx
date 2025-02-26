@@ -1,81 +1,69 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import SplitType from "split-type";
+import { useEffect } from "react";
 import gsap from "gsap";
+import SplitType from "split-type"; // Ensure SplitType is properly imported
 
-export default function Preloader() {
-  const [progress, setProgress] = useState(0);
-
+export default function Preloader({ onComplete }) {
   useEffect(() => {
     document.querySelector("html").classList.add("scroll-hide");
 
-    const updateProgressBar = (progress) => {
-      const progressBar = document.getElementById("progress-bar");
-      if (progressBar) {
-        progressBar.style.width = progress + "%";
-      }
-    };
+    // ✅ Animate Progress Bar Using GSAP
+    gsap.to("#progress-bar", {
+      width: "100%",
+      duration: 2.5,
+      ease: "power3.inOut",
+      onComplete: () => {
+        setTimeout(() => {
+          // ✅ Split Text into Characters for Animation
+          const loaderText = document.querySelector(".loader-text h3");
+          if (loaderText) {
+            const splitText = new SplitType(loaderText, { types: "chars" });
 
-    const simulateProgress = () => {
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 1;
-        setProgress(progress);
-        updateProgressBar(progress);
-
-        if (progress === 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            const loaderText = document.querySelectorAll(".loader-text h3");
-            loaderText.forEach((text) => {
-              const loaderSingleText = new SplitType(text, { types: "chars" });
-
-              gsap.from(loaderSingleText.chars, {
-                opacity: 0,
-                x: 50,
-                duration: 0.5,
-                stagger: 0.1,
-                delay: 0.8,
-              });
-            });
-
-            gsap.to(".progress-wrapper", {
-              scale: 1.5,
+            // ✅ Animate Text Letters Using GSAP
+            gsap.from(splitText.chars, {
               opacity: 0,
-              display: "none",
-              ease: "power3.inOut",
-              duration: 1.2,
-              delay: 0.2,
+              x: 50,
+              duration: 0.5,
+              stagger: 0.1,
+              delay: 0.3,
+              ease: "power3.out",
             });
+          }
 
-            gsap.to(".revealer", {
-              top: "0%",
-              ease: "power3.inOut",
-              duration: 2.2,
-              delay: 1,
-            });
+          // ✅ Animate Preloader Exit
+          gsap.to(".progress-wrapper", {
+            scale: 1.5,
+            opacity: 0,
+            display: "none",
+            ease: "power3.inOut",
+            delay: 0.2,
+          });
 
-            gsap.to(".loader", {
-              yPercent: -100,
-              ease: "power3.inOut",
-              duration: 1,
-              delay: 1.9,
-            });
+          gsap.to(".revealer", {
+            top: "0%",
+            ease: "power3.inOut",
+            delay: 1,
+          });
 
-            setTimeout(() => {
+          gsap.to(".loader", {
+            yPercent: -100,
+            ease: "power3.inOut",
+            delay: 1.9,
+            onComplete: () => {
               document.querySelector("html").classList.remove("scroll-hide");
-            }, 2600);
-          }, 500);
-        }
-      }, 10);
-    };
 
-    simulateProgress();
+              // ✅ Call the callback function to reinitialize scripts
+              if (onComplete) onComplete();
+            },
+          });
+        }, 500);
+      },
+    });
   }, []);
+
   return (
     <div className="loader overflow-hidden">
-      <div className="revealer" />
+      <div className="revealer"></div>
       <div className="loader-text-wrapper">
         <div className="loader-text">
           <h3>IGNITAX</h3>
@@ -83,7 +71,7 @@ export default function Preloader() {
       </div>
       <div className="progress-wrapper">
         <div className="progress-line-wrapper">
-          <span className="progress-line" id="progress-bar" />
+          <span className="progress-line" id="progress-bar"></span>
         </div>
       </div>
     </div>
