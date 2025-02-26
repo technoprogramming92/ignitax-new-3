@@ -60,24 +60,6 @@ export default function ClientWrapper({ children }) {
 
       {/* ✅ Render children (your app content) */}
       {children}
-
-      {/* ✅ Re-run animations after scripts load */}
-      {scriptsLoaded && (
-        <Script id="reinit-animations" strategy="lazyOnload">
-          {`
-            console.log("✅ Re-running animations after scripts load");
-            if (typeof window !== "undefined" && window.gsap) {
-              gsap.from(".hero-two-box p", {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: "power3.out"
-              });
-            }
-          `}
-        </Script>
-      )}
     </>
   );
 }
