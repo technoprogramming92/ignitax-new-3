@@ -1,5 +1,5 @@
 import "./globals.css";
-import "../public/css/plugins.css";
+import "./styles/plugins.css";
 import ClientWrapper from "./components/ClientWrapper";
 import Navbar from "./components/Navbar";
 import Preloader from "./components/Preloader";
@@ -12,15 +12,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="scroll-hide">
         <ClientWrapper>
-          <div className="cursor d-none d-lg-block"></div>
+          {/* ✅ Ensure Preloader Runs First */}
           <Preloader />
+
+          {/* ✅ Back to Top Button */}
           <a href="#" id="scroll-top" className="back-to-top-btn">
             <i className="bi bi-arrow-up"></i>
           </a>
+
+          {/* ✅ Navbar */}
           <Navbar />
-          {children}
+
+          {/* ✅ Page Content */}
+          <main>{children}</main>
         </ClientWrapper>
       </body>
     </html>

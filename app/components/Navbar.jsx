@@ -1,16 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link"; // ✅ Next.js optimized routing
 
 export default function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 20) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
+      requestAnimationFrame(() => {
+        setIsSticky(window.scrollY >= 20);
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -22,85 +21,92 @@ export default function Navbar() {
       <div className={`menu-area menu-area-two ${isSticky ? "sticky" : ""}`}>
         <div className="container container-semi-large">
           <div className="row align-items-center position-relative">
+            {/* ✅ Logo Section */}
             <div className="col-lg-3 hamburger-menu position-relative">
               <div className="menu-logo-wrap">
-                <a href="index.html">
-                  <img src="/images/logo.svg" alt="logo" />
-                </a>
+                <Link href="/">
+                  <img src="/images/logo.svg" alt="Company Logo" />
+                </Link>
               </div>
             </div>
+
+            {/* ✅ Main Navigation */}
             <div className="col-lg-9 d-none d-lg-block">
               <div className="nav-wrap d-flex justify-content-between align-items-center">
                 <nav className="mainmenu text-right">
                   <ul className="home-menu">
                     <li>
-                      <a href="index.html" className="no-underline">
+                      <Link href="/" className="no-underline">
                         Home
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="about.html" className="no-underline">
+                      <Link href="/about" className="no-underline">
                         About
-                      </a>
+                      </Link>
                     </li>
                     <li className="has-child-menu">
-                      <a href="javascript:void(0)" className="no-underline">
+                      <a href="#" className="no-underline">
                         Blog
                       </a>
                       <ul>
                         <li>
-                          <a href="blog-classic.html">Blog Classic</a>
+                          <Link href="/blog-classic">Blog Classic</Link>
                         </li>
                         <li>
-                          <a href="blog-single.html">Blog Single</a>
+                          <Link href="/blog-single">Blog Single</Link>
                         </li>
                       </ul>
                     </li>
                     <li className="has-child-menu">
-                      <a href="javascript:void(0)" className="no-underline">
+                      <a href="#" className="no-underline">
                         Pages
                       </a>
                       <ul>
                         <li>
-                          <a href="service.html">Service</a>
+                          <Link href="/service">Service</Link>
                         </li>
                         <li>
-                          <a href="portfolio-grid.html">Portfolio</a>
+                          <Link href="/portfolio-grid">Portfolio</Link>
                         </li>
                         <li>
-                          <a href="team.html">Team</a>
+                          <Link href="/team">Team</Link>
                         </li>
                         <li>
-                          <a href="faq.html">FAQ</a>
+                          <Link href="/faq">FAQ</Link>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="contact.html" className="no-underline">
+                      <Link href="/contact" className="no-underline">
                         Contact
-                      </a>
+                      </Link>
                     </li>
                   </ul>
+
+                  {/* ✅ Mobile Menu Button */}
                   <div className="menu-btn-wrap flex-shrink-0 d-lg-none pb-5 pt-3 ps-4">
-                    <a
+                    <Link
                       className="common-design-btn only-border border-white"
-                      href="contact.html"
+                      href="/contact"
                     >
                       <span className="btn-flip">
                         <span data-text="Let's Connect">Let's Connect</span>
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </nav>
+
+                {/* ✅ Desktop Menu Button */}
                 <div className="menu-btn-wrap flex-shrink-0 d-none d-lg-block">
-                  <a
+                  <Link
                     className="common-design-btn only-border"
-                    href="contact.html"
+                    href="/contact"
                   >
                     <span className="btn-flip">
                       <span data-text="Let's Connect">Let's Connect</span>
                     </span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

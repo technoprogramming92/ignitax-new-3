@@ -86,7 +86,7 @@ export default function Preloader({ onComplete }) {
       <div className="revealer"></div>
       <div className="loader-text-wrapper">
         <div className="loader-text">
-          <h3>Axole</h3>
+          <h3>IGNITAX</h3>
         </div>
       </div>
       <div className="progress-wrapper">
