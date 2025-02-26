@@ -1,9 +1,11 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
-import SplitType from "split-type"; // Ensure SplitType is properly imported
+import SplitType from "split-type";
 
 export default function Preloader({ onComplete }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     document.querySelector("html").classList.add("scroll-hide");
 
@@ -14,7 +16,6 @@ export default function Preloader({ onComplete }) {
       ease: "power3.inOut",
       onComplete: () => {
         setTimeout(() => {
-          // ✅ Split Text into Characters for Animation
           const loaderText = document.querySelector(".loader-text h3");
           if (loaderText) {
             const splitText = new SplitType(loaderText, { types: "chars" });
@@ -51,8 +52,9 @@ export default function Preloader({ onComplete }) {
             delay: 1.9,
             onComplete: () => {
               document.querySelector("html").classList.remove("scroll-hide");
+              setIsLoaded(true);
 
-              // ✅ Call the callback function to reinitialize scripts
+              // ✅ Call onComplete to reinitialize scripts globally
               if (onComplete) onComplete();
             },
           });
@@ -61,12 +63,30 @@ export default function Preloader({ onComplete }) {
     });
   }, []);
 
+  // ✅ Re-run animations after everything is loaded
+  useEffect(() => {
+    if (isLoaded) {
+      console.log("✅ Page Fully Loaded - Reinitializing Animations");
+
+      // Manually trigger animations if needed
+      if (typeof window !== "undefined" && window.gsap) {
+        gsap.from(".hero-two-box p", {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+        });
+      }
+    }
+  }, [isLoaded]);
+
   return (
     <div className="loader overflow-hidden">
       <div className="revealer"></div>
       <div className="loader-text-wrapper">
         <div className="loader-text">
-          <h3>IGNITAX</h3>
+          <h3>Axole</h3>
         </div>
       </div>
       <div className="progress-wrapper">
