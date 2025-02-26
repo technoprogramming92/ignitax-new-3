@@ -1,9 +1,25 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 20) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header>
-      <div className="menu-area menu-area-two">
+      <div className={`menu-area menu-area-two ${isSticky ? "sticky" : ""}`}>
         <div className="container container-semi-large">
           <div className="row align-items-center position-relative">
             <div className="col-lg-3 hamburger-menu position-relative">
@@ -18,13 +34,19 @@ export default function Navbar() {
                 <nav className="mainmenu text-right">
                   <ul className="home-menu">
                     <li>
-                      <a href="index.html">Home</a>
+                      <a href="index.html" className="no-underline">
+                        Home
+                      </a>
                     </li>
                     <li>
-                      <a href="about.html">About</a>
+                      <a href="about.html" className="no-underline">
+                        About
+                      </a>
                     </li>
                     <li className="has-child-menu">
-                      <a href="javascript:void(0)">Blog</a>
+                      <a href="javascript:void(0)" className="no-underline">
+                        Blog
+                      </a>
                       <ul>
                         <li>
                           <a href="blog-classic.html">Blog Classic</a>
@@ -35,7 +57,9 @@ export default function Navbar() {
                       </ul>
                     </li>
                     <li className="has-child-menu">
-                      <a href="javascript:void(0)">Pages</a>
+                      <a href="javascript:void(0)" className="no-underline">
+                        Pages
+                      </a>
                       <ul>
                         <li>
                           <a href="service.html">Service</a>
@@ -52,7 +76,9 @@ export default function Navbar() {
                       </ul>
                     </li>
                     <li>
-                      <a href="contact.html">Contact</a>
+                      <a href="contact.html" className="no-underline">
+                        Contact
+                      </a>
                     </li>
                   </ul>
                   <div className="menu-btn-wrap flex-shrink-0 d-lg-none pb-5 pt-3 ps-4">

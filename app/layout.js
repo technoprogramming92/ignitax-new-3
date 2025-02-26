@@ -14,7 +14,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="">
         <ClientWrapper>
+          <div className="cursor d-none d-lg-block"></div>
           <Preloader />
+          <a href="#" id="scroll-top" className="back-to-top-btn">
+            <i className="bi bi-arrow-up"></i>
+          </a>
           <Navbar />
           {children}
         </ClientWrapper>

@@ -4,12 +4,6 @@ import { promises as fs } from "fs";
 import path from "path";
 
 const nextConfig = {
-  experimental: {
-    optimizeCss: false,
-    optimizeImages: true,
-  },
-  trailingSlash: true,
-
   webpack: (config) => {
     config.plugins.push({
       apply: (compiler) => {
